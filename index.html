@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Renata — A Nossa História</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0d080b;
+    color:#f7e9e9;
+    font-family:Georgia, "Times New Roman", serif;
+    overflow-x:hidden;
+}
+
+/* FUNDO */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(150,40,70,.15), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(100,20,50,.13), transparent 30%);
+    pointer-events:none;
+    z-index:-2;
+}
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#f2b7c5;
+    border-radius:50%;
+    opacity:.35;
+    animation:float 8s infinite ease-in-out;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    20%{
+        opacity:.4;
+    }
+    80%{
+        opacity:.3;
+    }
+    100%{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+/* CAPA */
+
+.cover{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    position:relative;
+}
+
+.cover .small{
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#c99ca8;
+    margin-bottom:25px;
+}
+
+.cover h1{
+    font-size:clamp(45px,10vw,90px);
+    font-weight:normal;
+    line-height:1;
+    margin-bottom:20px;
+    animation:appear 2s ease;
+}
+
+.cover h1 span{
+    color:#d989a0;
+}
+
+.cover p{
+    max-width:650px;
+    color:#cdbdc1;
+    font-size:18px;
+    line-height:1.8;
+}
+
+.date{
+    margin-top:35px;
+    color:#d989a0;
+    letter-spacing:3px;
+}
+
+.scroll{
+    position:absolute;
+    bottom:30px;
+    font-size:12px;
+    letter-spacing:3px;
+    color:#88777c;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    50%{opacity:.4;}
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* LIVRO */
+
+.book{
+    max-width:900px;
+    margin:auto;
+    padding:30px 20px 100px;
+}
+
+.chapter{
+    min-height:80vh;
+    padding:100px 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s ease;
+}
+
+.chapter.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.chapter-number{
+    color:#b66b7f;
+    letter-spacing:4px;
+    font-size:13px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.chapter h2{
+    font-size:clamp(32px,7vw,58px);
+    font-weight:normal;
+    line-height:1.1;
+    margin-bottom:35px;
+}
+
+.chapter h2 span{
+    color:#d989a0;
+}
+
+.chapter p{
+    color:#d6c8cb;
+    font-size:18px;
+    line-height:2;
+    margin-bottom:22px;
+}
+
+.divider{
+    width:80px;
+    height:1px;
+    background:#9d5369;
+    margin:35px 0;
+}
+
+/* DESTAQUES */
+
+.quote{
+    border-left:2px solid #b66b7f;
+    padding:15px 25px;
+    margin:35px 0;
+    color:#e5b7c1;
+    font-size:22px;
+    font-style:italic;
+    line-height:1.7;
+}
+
+/* MEMÓRIAS */
+
+.memories{
+    display:grid;
+    gap:18px;
+    margin-top:30px;
+}
+
+.memory{
+    padding:25px;
+    border:1px solid rgba(210,130,150,.18);
+    background:rgba(255,255,255,.025);
+    border-radius:15px;
+    transition:.3s;
+}
+
+.memory:hover{
+    transform:translateY(-5px);
+    border-color:rgba(210,130,150,.45);
+    background:rgba(255,255,255,.045);
+}
+
+.memory h3{
+    color:#e2a0b1;
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.memory p{
+    font-size:16px;
+    line-height:1.7;
+    margin:0;
+}
+
+/* DESENHO */
+
+.art-section{
+    margin-top:50px;
+    text-align:center;
+}
+
+.art-section img{
+    width:100%;
+    max-width:600px;
+    border-radius:18px;
+    border:1px solid rgba(220,140,160,.3);
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+    display:block;
+    margin:25px auto;
+}
+
+.art-caption{
+    color:#a99298;
+    font-style:italic;
+    font-size:15px;
+}
+
+/* FUTURO */
+
+.future-list{
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.future-item{
+    padding:20px;
+    border-radius:12px;
+    background:rgba(255,255,255,.025);
+    border-left:2px solid #9d5369;
+    color:#d8c6ca;
+    line-height:1.7;
+}
+
+/* FINAL */
+
+.final{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.final-content{
+    max-width:750px;
+}
+
+.final .heart{
+    font-size:70px;
+    color:#d97991;
+    animation:heartbeat 1.5s infinite;
+    margin-bottom:25px;
+}
+
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.12);
+    }
+}
+
+.final h2{
+    font-size:clamp(40px,8vw,70px);
+    font-weight:normal;
+    margin-bottom:30px;
+}
+
+.final p{
+    color:#d4c3c7;
+    font-size:19px;
+    line-height:2;
+}
+
+.final .date{
+    margin-top:40px;
+}
+
+.signature{
+    margin-top:50px;
+    font-size:22px;
+    color:#d993a5;
+    font-style:italic;
+}
+
+.end{
+    margin-top:70px;
+    color:#75666b;
+    font-size:13px;
+    letter-spacing:2px;
+}
+
+/* BOTÃO */
+
+.top-button{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid #855063;
+    background:#170d11;
+    color:#e0a3b1;
+    cursor:pointer;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:20;
+}
+
+.top-button.visible{
+    opacity:1;
+    pointer-events:auto;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .chapter{
+        padding:80px 8px;
+    }
+
+    .chapter p{
+        font-size:16px;
+        line-height:1.9;
+    }
+
+    .quote{
+        font-size:19px;
+    }
+
+    .cover p{
+        font-size:16px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="particles" id="particles"></div>
+
+<!-- CAPA -->
+
+<section class="cover">
+
+    <div class="small">Um livro que só existe por causa de você</div>
+
+    <h1>Para <span>Renata</span></h1>
+
+    <p>
+        Uma pequena tentativa de colocar em palavras
+        uma história que começou de um jeito que eu nunca
+        imaginaria e que acabou se tornando uma das partes
+        mais importantes da minha vida.
+    </p>
+
+    <div class="date">08 • 08 • 2026</div>
+
+    <div class="scroll">ROLE PARA COMEÇAR</div>
+
+</section>
+
+
+<main class="book">
+
+    <!-- PRÓLOGO -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Prólogo</div>
+
+        <h2>
+            O dia em que uma menina
+            <span>chegou sem avisar</span>
+        </h2>
+
+        <p>
+            Se alguém tivesse me falado naquele dia que uma pessoa
+            que eu nem conhecia direito iria se tornar tão importante
+            para mim, provavelmente eu teria rido.
+        </p>
+
+        <p>
+            Mas foi exatamente isso que aconteceu.
+        </p>
+
+        <p>
+            Eu estava em um jogo do Roblox chamado
+            <strong>MushYO</strong>, vivendo mais um daqueles momentos
+            que parecem completamente normais.
+        </p>
+
+        <p>
+            Até que apareceu você.
+        </p>
+
+        <div class="quote">
+            Você simplesmente veio chegando perto de mim,
+            sem falar nada.
+        </div>
+
+        <p>
+            E eu não fazia ideia de que aquela menina que chegou
+            perto de mim sem dizer uma palavra estava prestes a
+            entrar na minha vida de um jeito que eu nunca esqueceria.
+        </p>
+
+        <div class="divider"></div>
+
+        <p>
+            <strong>08 de agosto de 2026.</strong>
+        </p>
+
+        <p>
+            O dia em que começou a nossa história.
+        </p>
+
+    </section>
+
+
+    <!-- CAPÍTULO 1 -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Capítulo 1</div>
+
+        <h2>
+            A menina que chegou
+            <span>sem avisar</span>
+        </h2>
+
+        <p>
+            Depois daquele primeiro momento, a gente começou a se
+            falar.
+        </p>
+
+        <p>
+            E foi aí que aconteceu uma coisa que eu não estava
+            esperando.
+        </p>
+
+        <p>
+            Você foi entrando na minha vida aos poucos, mas ao mesmo
+            tempo parecia que tinha chegado com uma velocidade
+            absurda.
+        </p>
+
+        <p>
+            Quando eu percebi, você já tinha me colocado no bolso.
+        </p>
+
+        <div class="quote">
+            Você chegou sem fazer barulho e, quando eu percebi,
+            já tinha virado parte da minha vida.
+        </div>
+
+        <p>
+            O mais engraçado é que tudo começou em um jogo.
+            Um lugar que poderia ter sido só mais uma lembrança
+            qualquer.
+        </p>
+
+        <p>
+            Mas não foi.
+        </p>
+
+        <p>
+            Porque foi naquele jogo que eu encontrei você.
+        </p>
+
+    </section>
+
+
+    <!-- CAPÍTULO 2 -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Capítulo 2</div>
+
+        <h2>
+            E então virou
+            <span>nós</span>
+        </h2>
+
+        <p>
+            Em algum momento entre uma conversa e outra,
+            entre risadas, brincadeiras, chamadas e aquelas
+            pequenas coisas que só nós entendemos,
+            deixou de ser apenas uma pessoa que eu conheci.
+        </p>
+
+        <p>
+            Você virou alguém que eu queria por perto.
+        </p>
+
+        <p>
+            Alguém cuja mensagem eu queria receber.
+            Alguém cuja voz eu queria ouvir.
+            Alguém que fazia falta quando não estava ali.
+        </p>
+
+        <p>
+            E então nós começamos a construir alguma coisa.
+        </p>
+
+        <p>
+            Não uma história perfeita.
+        </p>
+
+        <p>
+            Uma história nossa.
+        </p>
+
+        <div class="quote">
+            Porque amar alguém não é ter uma história sem problemas.
+            É continuar escolhendo aquela pessoa mesmo depois dos
+            momentos difíceis.
+        </div>
+
+        <p>
+            E eu escolho você.
+        </p>
+
+    </section>
+
+
+    <!-- CAPÍTULO 3 -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Capítulo 3</div>
+
+        <h2>
+            Pequenas coisas que
+            <span>ficaram enormes</span>
+        </h2>
+
+        <p>
+            Tem coisas que podem parecer pequenas para qualquer
+            outra pessoa, mas que para mim carregam um significado
+            enorme simplesmente porque vieram de você.
+        </p>
+
+        <p>
+            Os presentes que você me deu.
+            As coisas que eu te dei.
+            As lembranças que fomos juntando pelo caminho.
+        </p>
+
+        <p>
+            Talvez sejam objetos, mensagens ou momentos que alguém
+            de fora nem entenderia.
+        </p>
+
+        <p>
+            Mas eu entendo.
+        </p>
+
+        <p>
+            Porque cada uma dessas coisas carrega um pedaço da nossa
+            história.
+        </p>
+
+        <div class="memories">
+
+            <div class="memory">
+                <h3>Os presentes que você me deu</h3>
+                <p>
+                    Cada presente seu acabou se tornando muito mais
+                    do que simplesmente alguma coisa que eu ganhei.
+                    É uma lembrança de você, de nós e do carinho
+                    que existe entre a gente.
+                </p>
+            </div>
+
+            <div class="memory">
+                <h3>Os presentes que eu te dei</h3>
+                <p>
+                    Cada coisa que eu escolhi para você carregava
+                    uma vontade simples: fazer você sorrir e mostrar
+                    um pouquinho do quanto você é importante para mim.
+                </p>
+            </div>
+
+            <div class="memory">
+                <h3>Nossas pequenas lembranças</h3>
+                <p>
+                    Conversas, brincadeiras, chamadas, saudades,
+                    momentos aleatórios e todas aquelas coisas que
+                    provavelmente só nós dois conseguiríamos explicar.
+                </p>
+            </div>
+
+            <div class="memory">
+                <h3>O que ficou</h3>
+                <p>
+                    No final, são essas pequenas coisas que acabam
+                    ficando guardadas. E eu quero guardar todas as
+                    que tiverem você nelas.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DESENHO DO ALTAR -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Uma lembrança nossa</div>
+
+        <h2>
+            Um desenho feito
+            <span>para você</span>
+        </h2>
+
+        <p>
+            Entre todas as coisas que eu poderia colocar nesse livro,
+            eu também queria guardar uma coisa que fiz pensando em
+            você.
+        </p>
+
+        <p>
+            Um desenho nosso, feito para ficar no nosso altar.
+        </p>
+
+        <p>
+            Pode ser só um desenho para quem olha de fora.
+            Para mim, é mais uma parte da nossa história.
+        </p>
+
+        <div class="art-section">
+
+            <!--
+                COLOQUE A FOTO DO DESENHO NA MESMA PASTA DO INDEX.HTML
+                E DEIXE O NOME DO ARQUIVO COMO:
+
+                desenho-altar.jpg
+            -->
+
+            <img
+                src="desenho-altar.jpg"
+                alt="Desenho feito por Thiago para Renata">
+
+            <div class="art-caption">
+                Um pedacinho da nossa história feito por mim para você.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CAPÍTULO 4 -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Capítulo 4</div>
+
+        <h2>
+            Você
+        </h2>
+
+        <p>
+            Eu poderia passar páginas e páginas tentando explicar
+            por que eu amo você.
+        </p>
+
+        <p>
+            E provavelmente ainda faltariam palavras.
+        </p>
+
+        <p>
+            Eu amo o jeito que você entrou na minha vida.
+            Amo nossas conversas.
+            Amo nossas brincadeiras.
+            Amo quando consigo arrancar um sorriso seu.
+        </p>
+
+        <p>
+            Amo até as pequenas coisas que talvez você nem perceba
+            que eu reparo.
+        </p>
+
+        <div class="quote">
+            Você não virou importante para mim por causa de uma
+            única coisa. Foi por causa de todas as pequenas coisas
+            que foram acontecendo.
+        </div>
+
+        <p>
+            E quanto mais eu conheço você, mais eu percebo o quanto
+            eu quero continuar conhecendo.
+        </p>
+
+        <p>
+            Quero conhecer suas fases, seus sonhos, seus medos,
+            suas manias, suas vontades e tudo aquilo que ainda
+            vou descobrir sobre você.
+        </p>
+
+    </section>
+
+
+    <!-- CAPÍTULO 5 -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Capítulo 5</div>
+
+        <h2>
+            Nós
+            <span>dois</span>
+        </h2>
+
+        <p>
+            A nossa história não é feita só dos momentos bonitos.
+        </p>
+
+        <p>
+            Também existem saudades, discussões, inseguranças,
+            momentos em que um entende o outro errado e momentos
+            em que simplesmente não sabemos muito bem o que falar.
+        </p>
+
+        <p>
+            Mas mesmo assim, existe uma coisa que eu nunca quero
+            perder.
+        </p>
+
+        <p>
+            A vontade de resolver.
+        </p>
+
+        <p>
+            A vontade de conversar.
+        </p>
+
+        <p>
+            A vontade de continuar.
+        </p>
+
+        <div class="quote">
+            Eu não quero uma história perfeita.
+            Eu quero uma história que seja nossa.
+        </div>
+
+        <p>
+            Quero que a gente aprenda um com o outro.
+            Quero que a gente consiga falar quando alguma coisa
+            machucar.
+        </p>
+
+        <p>
+            Quero que, mesmo quando estiver difícil, a gente lembre
+            do motivo pelo qual começou.
+        </p>
+
+    </section>
+
+
+    <!-- CAPÍTULO 6 -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Capítulo 6</div>
+
+        <h2>
+            Tudo que ainda quero
+            <span>viver com você</span>
+        </h2>
+
+        <p>
+            Se tudo isso que já vivemos coube em tão pouco tempo,
+            eu fico imaginando quantas outras lembranças ainda
+            podemos criar.
+        </p>
+
+        <div class="future-list">
+
+            <div class="future-item">
+                Um domingo preguiçoso com você.
+            </div>
+
+            <div class="future-item">
+                Acordar ao seu lado e perceber que você está ali.
+            </div>
+
+            <div class="future-item">
+                Fazer coisas completamente aleatórias juntos.
+            </div>
+
+            <div class="future-item">
+                Viajar e conhecer lugares novos com você.
+            </div>
+
+            <div class="future-item">
+                Criar lembranças que um dia vamos olhar para trás
+                e rir delas.
+            </div>
+
+            <div class="future-item">
+                Ter dias tranquilos, dias caóticos e dias que
+                simplesmente sejam nossos.
+            </div>
+
+            <div class="future-item">
+                Continuar conhecendo você por muito, muito tempo.
+            </div>
+
+        </div>
+
+        <p style="margin-top:35px;">
+            E sinceramente?
+        </p>
+
+        <p>
+            Eu não quero que a nossa história pare nas coisas que
+            já aconteceram.
+        </p>
+
+        <p>
+            Eu quero descobrir o resto dela com você.
+        </p>
+
+    </section>
+
+
+    <!-- ÚLTIMO CAPÍTULO -->
+
+    <section class="chapter">
+
+        <div class="chapter-number">Último capítulo</div>
+
+        <h2>
+            Ainda não é
+            <span>o fim</span>
+        </h2>
+
+        <p>
+            Talvez esse livro pareça estar chegando ao fim.
+        </p>
+
+        <p>
+            Mas ele não está.
+        </p>
+
+        <p>
+            Porque eu só consigo escrever até aqui.
+        </p>
+
+        <p>
+            O resto ainda precisa acontecer.
+        </p>
+
+        <p>
+            Ainda precisamos viver os dias que não chegaram.
+            Conhecer os lugares que ainda não conhecemos.
+            Tirar as fotos que ainda não tiramos.
+            Dar os presentes que ainda não demos.
+            Criar as lembranças que ainda nem imaginamos.
+        </p>
+
+        <div class="quote">
+            Este livro termina aqui.
+            A nossa história, não.
+        </div>
+
+        <p>
+            E se um dia eu voltar para essas páginas, eu espero
+            conseguir adicionar muitas outras.
+        </p>
+
+        <p>
+            Porque eu amo você mais do que consigo colocar em
+            palavras.
+        </p>
+
+        <p>
+            E eu quero continuar escrevendo essa história.
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- FINAL -->
+
+<section class="final">
+
+    <div class="final-content">
+
+        <div class="heart">♥</div>
+
+        <h2>
+            Eu amo você,<br>
+            Renata.
+        </h2>
+
+        <p>
+            A nossa história começou em um jogo,
+            com uma menina chegando perto de mim sem dizer nada.
+        </p>
+
+        <p>
+            Eu não fazia ideia de que aquela menina estava prestes
+            a se tornar uma das pessoas mais importantes da minha vida.
+        </p>
+
+        <p>
+            E hoje eu só consigo agradecer por aquele dia.
+        </p>
+
+        <p>
+            Porque foi o dia em que encontrei você.
+        </p>
+
+        <div class="date">
+            08.08.2026
+        </div>
+
+        <div class="signature">
+            De Thiago,<br>
+            para o amor da minha vida,<br>
+            Renata.
+        </div>
+
+        <div class="end">
+            Fim deste livro.<br>
+            Não da nossa história.
+        </div>
+
+    </div>
+
+</section>
+
+
+<button class="top-button" id="topButton">↑</button>
+
+
+<script>
+
+/* PARTÍCULAS */
+
+const particles = document.getElementById("particles");
+
+for(let i = 0; i < 35; i++){
+
+    const p = document.createElement("div");
+
+    p.className = "particle";
+
+    p.style.left = Math.random() * 100 + "%";
+    p.style.animationDelay = Math.random() * 8 + "s";
+    p.style.animationDuration = (6 + Math.random() * 7) + "s";
+    p.style.width = (2 + Math.random() * 3) + "px";
+    p.style.height = p.style.width;
+
+    particles.appendChild(p);
+}
+
+
+/* ANIMAÇÃO DOS CAPÍTULOS */
+
+const chapters = document.querySelectorAll(".chapter");
+
+const observer = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+                entry.target.classList.add("show");
+            }
+
+        });
+
+    },
+    {
+        threshold:0.15
+    }
+);
+
+chapters.forEach(chapter => {
+    observer.observe(chapter);
+});
+
+
+/* BOTÃO VOLTAR AO TOPO */
+
+const topButton = document.getElementById("topButton");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 600){
+        topButton.classList.add("visible");
+    }else{
+        topButton.classList.remove("visible");
+    }
+
+});
+
+topButton.addEventListener("click", () => {
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+});
+
+</script>
+
+</body>
+</html>
